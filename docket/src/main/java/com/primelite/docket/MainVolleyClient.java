@@ -37,22 +37,16 @@ public class MainVolleyClient {
             defaultValue = p;
         }
     }
-
-    protected enum RequestState {
-        IDEAL, REQUESTED, SUCCESS, ERROR;
-    }
-
-    public enum RequestTypes {
-        STRING_REQUEST("stringRequest"),
-        JSON_ARRAY_REQUEST("jsonArrayRequest"),
-        JSON_OBJECT_REQUEST("jsonObjectRequest"),
-        IMAGE_REQUEST("imageRequest");
-
-        private String text = "";
-
-        private RequestTypes(final String text) {
+    public enum RequestTypes{
+        STRING_REQUEST("stringRequest"),JSON_ARRAY_REQUEST("jsonArrayRequest"),
+        JSON_OBJECT_REQUEST("jsonObjectRequest"),IMAGE_REQUEST("imageRequest");
+        String text = "";
+        RequestTypes(final String text) {
             this.text = text;
         }
+    }
+    protected enum RequestState {
+        IDEAL, REQUESTED, SUCCESS, ERROR;
     }
 
     private static final String TAG = MainVolleyClient.class.getSimpleName();
@@ -61,6 +55,10 @@ public class MainVolleyClient {
     public static final String HEADER_TEXT_JSON = "text/json";
     public static final String HEADER_URL_ENCODED = "application/x-www-form-urlencoded";
 
+    public static final String STRING_REQUEST = "stringRequest";
+    public static final String JSON_ARRAY_REQUEST = "jsonArrayReques";
+    public static final String JSON_OBJECT_REQUEST = "jsonObjectRequest";
+    public static final String IMAGE_REQUEST = "imageRequest";
 
     public static final int DEFAULT_TIMEOUT_MS = 2500;
     public static int DEFAULT_MAX_RETRIES = 1;
@@ -93,7 +91,7 @@ public class MainVolleyClient {
         switch (request.getRequestType()) {
             case STRING_REQUEST:
                 StringRequest stringRequest = new StringRequest(
-                        request.getRequestMethod(), request.getRequestUrl(), new Response.Listener<String>() {
+                        request.getRequestMethod(), request.getRequestUrl(),new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         request.onGetResponse(response);
@@ -204,7 +202,7 @@ public class MainVolleyClient {
         requestTypename.setRetryPolicy(new RetryPolicy() {
 
             /**
-             * @return Retruns the current timeout.
+             * @return  rethe current timeout.
              */
             @Override
             public int getCurrentTimeout() {
@@ -214,8 +212,7 @@ public class MainVolleyClient {
             }
 
             /**
-             *
-             * @return Returns the current retry count.
+             * Returns the current retry count.
              */
             @Override
             public int getCurrentRetryCount() {
@@ -239,7 +236,6 @@ public class MainVolleyClient {
 
         });
     }
-
     /**
      * Returns true if this policy has attempts remaining, false otherwise.
      */

@@ -25,7 +25,7 @@ class TestRequest extends MainVolleyClient {
                 .setPerams("key", KEY)
                 .setPerams("mobile_number", getMobileNumber())
                 .setTag("testRequest")
-                .setConnectionTimeOut(10);
+                .setConnectionTimeOut(3000);
         super.execute(testRequest);
     }
 

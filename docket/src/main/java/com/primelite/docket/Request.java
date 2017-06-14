@@ -23,6 +23,7 @@ public class Request implements ResponseHandler {
     private String tag;
     private int connectionTimeOut = 0;
     private int retryCount = 0;
+    private MainVolleyClient.RequestState state;
 
     /**
      * @param vollyCallback the request callback {@link VollyCallback} to deliver response
@@ -150,8 +151,8 @@ public class Request implements ResponseHandler {
     /**
      * @param state state {@link MainVolleyClient.RequestState} to be set for the request
      */
-    public void setState(MainVolleyClient.RequestState state) {
-        this.setState(state);
+    void setState(MainVolleyClient.RequestState state) {
+        this.state= state;
     }
 
     /**
